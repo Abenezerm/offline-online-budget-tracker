@@ -6,7 +6,7 @@ A web application that allows users to add transactions on to app, weather onlin
 
 ## Installation 
 
-clone repository, then navigate to it using the terminal. Once there, run "npm i" then run "npm run start", once done a version of the application should be runnig on localhost:3000. (This is all assuming that one already has Mongo db configured and runnng on the device)
+clone repository, then navigate to it using the terminal. Once there, run "npm i" then run "npm run start", once done a version of the application should be running on localhost:3000. (This is all assuming that one already has Mongo db configured and runnng on the device)
 
 ## Usage
 
