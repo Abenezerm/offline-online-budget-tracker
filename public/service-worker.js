@@ -1,13 +1,11 @@
-const CACHE_NAME = "static-onine-offline-budget-cache-v1";
+const CACHE_NAME = "static-onine-offline-budget-cache-v2";
 const DATA_CACHE_NAME = "budget-cache-v1";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/favicon.ico",
-  "/manifest.webmanifest",
-  "/style.css",
-  "/icons/icon-192x192.png",
-  "/icons/icon-512x512.png",
+  "/manifest.json",
+  "icons/icon-192x192.png",
+  "icons/icon-512x512.png",
 ];
 
 // install
