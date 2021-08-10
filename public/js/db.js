@@ -3,11 +3,31 @@ let db;
 //Creates a new "budget" db...
 const request = indexedDB.open('budget', 1);
 
-const dbCheck = ()
+//when we connect successfully...
+request.onsuccess = function (event) {
+  db = event.target.result;
+  if (navigator.onLine) {
+    dbCheck();
+  }
+};
+
+//In case there is an error...
+request.onerror = function (event) {
+  console.log(`An Error has occured: ${event.console.errorCode}`);
+}
+
+//when upgrading is needed...
+request.onupgradeneeded = function (event) {
+    const db = event.target.result;
+    db.createObjectStore('payment', { autoIncrement: true });
+};
+
+
+const dbCheck = () => {
   //open transaction, acess 'paymeny object', & gets all records - setting them to a variable...
-  const transaction = db.transaction(['payment'], 'readwerite');
-  const tos = transaction.objectStore('payment');
-  const getAll = tos.getAll();
+  const transaction = db.transaction(['payment'], 'readwrite')
+  const tos = transaction.objectStore('payment')
+  const getAll = tos.getAll()
 
   //if request is susccesful...
   getAll.onsuccess = function () {
@@ -32,14 +52,10 @@ const dbCheck = ()
   };
 
 }
-//when upgrading is needed...
-request.onupgradeneeded = function (event) {
-    const db = event.target.result;
-    db.createObjectStore('payment', { autoIncrement: true });
-};
 
-
-//In case there is an error...
-request.onerror = function (event) {
-  console.log(`An Error has occured: ${event.console.errorCode}`);
+//open transaction, acess 'payment' object, adds data...
+const saveRecord = (data) =>{
+  const transaction = db.transaction(['payment'], 'readwrite');
+  const tos = transaction.objectStore('payment');
+  tos.add(data)
 }
